@@ -1,0 +1,299 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "data": {
+    "url": "https://raw.githubusercontent.com/Jerry-Susanto/FIT3179-2023S2/main/youtube_filtered.csv"
+  },
+  "params": [
+    {
+      "name": "continent_selection",
+      "bind": {
+        "input": "select",
+        "options": [
+          null,
+          "Asia",
+          "Africa",
+          "Europe",
+          "North America",
+          "South America",
+          "Oceania"
+        ],
+        "labels": [
+          "Show All",
+          "Asia",
+          "Africa",
+          "Europe",
+          "North America",
+          "South America",
+          "Oceania"
+        ],
+        "name": "Continent Selection: "
+      }
+    },
+    {
+      "name": "uploads_below",
+      "value": 300000,
+      "bind": {
+        "input": "range",
+        "min": 0,
+        "max": 300000,
+        "step": 20000,
+        "name": "Maximum Uploads: "
+      }
+    }
+  ],
+  "hconcat": [
+    {
+      "width": 320,
+      "height": 480,
+      "transform": [
+        {
+          "filter": "datum.Subscribers > 0"
+        },
+        {
+          "filter": "datum.Views > 0"
+        },
+        {
+          "filter": "datum.Uploads <= uploads_below"
+        },
+        {
+          "filter": "continent_selection == null || datum.Continent == continent_selection"
+        }
+      ],
+      "encoding": {
+        "x": {
+          "field": "Subscribers",
+          "type": "quantitative",
+          "title": "Subscribers"
+        },
+        "y": {
+          "field": "Views",
+          "type": "quantitative",
+          "title": "Views"
+        }
+      },
+      "layer": [
+        {
+          "mark": "circle",
+          "encoding": {
+            "size": {
+              "field": "Uploads",
+              "type": "quantitative",
+              "title": "Uploads",
+              "scale": {
+                "range": [
+                  10,
+                  1000,
+                  100000
+                ]
+              },
+              "legend": {
+                "orient": "bottom"
+              }
+            },
+            "color": {
+              "field": "Continent",
+              "type": "nominal",
+              "scale": {
+                "domain": [
+                  "Asia",
+                  "Africa",
+                  "Europe",
+                  "North America",
+                  "South America",
+                  "Oceania"
+                ],
+                "range": [
+                  "#b83f2f",
+                  "#4a2639",
+                  "#1e3559",
+                  "#6eaeae",
+                  "#bfa2ed",
+                  "#c97f0b"
+                ]
+              },
+              "legend": {
+                "orient": "top"
+              }
+            },
+            "opacity": {
+              "value": 0.6
+            },
+            "tooltip": [
+              {
+                "field": "Youtuber",
+                "type": "ordinal",
+                "title": "Channel Name"
+              },
+              {
+                "field": "Continent",
+                "type": "ordinal",
+                "title": "Continent"
+              },
+              {
+                "field": "Country",
+                "type": "ordinal",
+                "title": "Country"
+              },
+              {
+                "field": "Subscribers",
+                "type": "quantitative",
+                "title": "Subscribers",
+                "format": ","
+              },
+              {
+                "field": "Views",
+                "type": "quantitative",
+                "title": "Views",
+                "format": ","
+              },
+              {
+                "field": "Uploads",
+                "type": "quantitative",
+                "title": "Uploads",
+                "format": ","
+              }
+            ]
+          }
+        },
+        {
+          "mark": {
+            "type": "text",
+            "align": "right",
+            "baseline": "middle",
+            "dx": -12,
+            "fontSize": 11.5,
+            "fontStyle": "italic"
+          },
+          "encoding": {
+            "text": {
+              "field": "Youtuber",
+              "type": "ordinal"
+            },
+            "color": {
+              "value": "black"
+            },
+            "opacity": {
+              "condition": {
+                "test": "datum['Youtuber'] == 'T-Series' || datum['Youtuber'] == 'PewDiePie' || datum['Youtuber'] == 'MrBeast' || datum['Youtuber'] == 'Cocomelon - Nursery Rhymes' || datum['Youtuber'] == 'SET India' || datum['Youtuber'] == 'ýýý Kids Diana Show' ||  datum['Youtuber'] == 'Like Nastya' ||  datum['Youtuber'] == 'Vlad and Niki'",
+                "value": 1
+              },
+              "value": 0
+            },
+            "tooltip": [
+              {
+                "field": "Youtuber",
+                "type": "ordinal",
+                "title": "Channel Name"
+              },
+              {
+                "field": "Continent",
+                "type": "ordinal",
+                "title": "Continent"
+              },
+              {
+                "field": "Country",
+                "type": "ordinal",
+                "title": "Country"
+              },
+              {
+                "field": "Subscribers",
+                "type": "quantitative",
+                "title": "Subscribers",
+                "format": ","
+              },
+              {
+                "field": "Views",
+                "type": "quantitative",
+                "title": "Views",
+                "format": ","
+              },
+              {
+                "field": "Uploads",
+                "type": "quantitative",
+                "title": "Uploads",
+                "format": ","
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "width": 320,
+      "height": 480,
+      "transform": [
+        {
+          "filter": "continent_selection == null || datum.Continent == continent_selection"
+        }
+      ],
+      "mark": "point",
+      "encoding": {
+        "x": {
+          "field": "Subs30Days",
+          "type": "quantitative",
+          "title": "Subs in Recent 30 Days"
+        },
+        "y": {
+          "field": "Views30Days",
+          "type": "quantitative",
+          "title": "Views in Recent 30 Days"
+        },
+        "color": {
+          "field": "Continent",
+          "type": "nominal",
+          "scale": {
+            "domain": [
+              "Asia",
+              "Africa",
+              "Europe",
+              "North America",
+              "South America",
+              "Oceania"
+            ],
+            "range": [
+              "#8dd3c7",
+              "#ffffb3",
+              "#bebada",
+              "#fb8072",
+              "#80b1d3",
+              "#fdb462"
+            ]
+          }
+        },
+        "opacity": {
+          "value": 0.6
+        },
+        "tooltip": [
+          {
+            "field": "Youtuber",
+            "type": "ordinal",
+            "title": "Channel Name"
+          },
+          {
+            "field": "Continent",
+            "type": "ordinal",
+            "title": "Continent"
+          },
+          {
+            "field": "Country",
+            "type": "ordinal",
+            "title": "Country"
+          },
+          {
+            "field": "Subs30Days",
+            "type": "quantitative",
+            "title": "Subs in Recent 30 Days",
+            "format": ","
+          },
+          {
+            "field": "Views30Days",
+            "type": "quantitative",
+            "title": "Views in Recent 30 Days",
+            "format": ","
+          }
+        ]
+      }
+    }
+  ],
+  "config": {}
+}

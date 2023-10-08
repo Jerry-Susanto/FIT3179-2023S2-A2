@@ -1,0 +1,103 @@
+body *{
+    font-family: 'Open Sans', sans-serif;
+}
+
+h1 {
+    font-weight: 900;
+}
+
+body {
+    background-color: #ffe1de;
+}
+
+.page {
+    width: 1200px;
+    background-color: white;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    border-style: solid;
+}
+
+.text-align-center {
+    text-align: center;
+}
+
+.text-align-justify {
+    text-align: justify;
+}
+
+.center {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 5%;
+}
+
+.description-right {
+    padding-left: 20px;
+}
+
+.description-left {
+    padding-right: 20px;
+}
+
+.pure-g {
+    margin: 30px;
+}
+
+.small-font {
+    font-size: 14px;
+}
+
+.stacked-bar-chart {
+    position: relative;
+}
+
+.stacked-bar-chart-egypt {
+    position: absolute;
+    top: 7%;
+    left: 62%;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.stacked-bar-chart-india {
+    position: absolute;
+    top: 22%;
+    left: 50%;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.stacked-bar-chart-uk {
+    position: absolute;
+    top: 37%;
+    left: 68%;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.stacked-bar-chart-us {
+    position: absolute;
+    top: 52%;
+    left: 45%;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.stacked-bar-chart-au {
+    position: absolute;
+    top: 67%;
+    left: 51%;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.stacked-bar-chart-brazil {
+    position: absolute;
+    top: 82%;
+    left: 37%;
+    font-size: 12px;
+    font-weight: bold;
+}

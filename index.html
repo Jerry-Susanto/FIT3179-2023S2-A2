@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>FIT3179 - Data Visualisation 2</title>
+
+  <script src="https://cdn.jsdelivr.net/npm/vega@5.20.2"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-lite@5.1.0"></script>
+  <script src="https://cdn.jsdelivr.net/npm/vega-embed@6.17.0"></script>
+
+  <link rel="stylesheet" href="https://unpkg.com/purecss@2.0.3/build/pure-min.css"
+    integrity="sha384-cg6SkqEOCV1NbJoCu11+bm0NvBRc8IYLRGXkmNrqUBfTjmMYwNKPWBTIKyw9mHNJ" crossorigin="anonymous">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" type="text/css" href="./style.css" media="all">
+
+
+</head>
+
+<body>
+
+  <div class="page">
+
+    <!-- Header -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <h1 class="text-align-center"
+          style="background-color: #c4463b; color: white; padding-top:10px; padding-bottom:10px">Statistics of Top
+          YouTube Channels 2023</h1>
+      </div>
+
+      <img class="center" src="youtube-logo-2431.svg" />
+
+      <div class="pure-u-1-1">
+        <h3 class="text-align-center" style="color:#c4463b">This visualisation only cover <span
+            style="color:white; background-color: #c4463b; border-radius: 10px">&nbsp;YouTube&nbsp;</span> channels with
+          12,000,000+ subscribers.</h3>
+      </div>
+    </div>
+
+    <!-- Choropleth Map -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <h3 class="text-align-center">Total <span
+            style="color:white; background-color: #c4463b; border-radius: 10px">&nbsp;YouTube&nbsp;</span> Subscribers
+          On Number of Channels of Each Country (2023)</h1>
+      </div>
+
+      <div class="pure-u-3-5">
+        <div id="vis1"></div>
+      </div>
+
+      <div class="pure-u-2-5">
+        <div class="description-right">
+          <p class="text-align-justify">
+            As shown in the choropleth map, the countries with the highest number of <span
+              style="color:white; background-color: #c4463b; border-radius: 10px">&nbsp;YouTube&nbsp;</span> subscribers
+            per channel are
+            <span style="color: #bfa2ed;">Cuba</span>,
+            <span style="color: #b83f2f;">Japan</span> and
+            <span style="color: #bfa2ed;">Venezuela</span>.
+            These three countries are the only countries with over <span style="font-size:large;">30,000,000</span>
+            subscribers per channel.
+            <span style="color: #b83f2f;">Japan</span> has gotten a recent boost, since PewDiePie, the most popular
+            YouTuber of his generation, has settled there.
+          </p>
+          <p class="text-align-justify">
+            <span style="color: #6eaeae;">The United States of America</span> and <span
+              style="color: #b83f2f;">India</span> are the two countries with the largest total subscribers,
+            with <span style="font-size:large;">7,329,500,000</span> and <span
+              style="font-size:large;">4,310,600,000</span> respectively.
+            Though, they fall short against the former countries in this case due to their large number of Top YouTube
+            channels.
+          </p>
+          <p class="text-align-justify">
+            It is shown that there are only two countries in <span style="color: #4a2639;">Africa</span> that has at
+            least one YouTuber with over
+            <span style="font-size:large;">12,000,000+</span> subscribers, <span style="color: #4a2639;">Egypt</span>
+            and <span style="color: #4a2639;">Morocco</span>. This can be
+            due to the lack of social media users in the Southern parts of <span style="color: #4a2639;">Africa</span>.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bubble Plot -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <h3 class="text-align-center">Subscribers, Views and Uploads Comparison of Top <span
+            style="color:white; background-color: #c4463b; border-radius: 10px">&nbsp;YouTube&nbsp;</span> Channels</h1>
+      </div>
+
+      <div class="pure-u-2-3">
+        <div id="vis2"></div>
+      </div>
+    </div>
+
+    <div class="pure-g">
+      <div class="pure-u-1-2">
+        <div>
+          <p class="text-align-justify" style="margin-right: 25px;">
+            The plot of subscribers against total views of each <span
+              style="color:white; background-color: #c4463b; border-radius: 10px">&nbsp;YouTube&nbsp;</span> channel
+            roughly follows a linear trend. Most of the channels fall on the bottom left, which makes the most popular
+            channels such as T-Series, Cocomelon, SET India, MrBeast and Like Nastya stand out.
+          </p>
+        </div>
+      </div>
+
+      <div class="pure-u-1-2">
+        <div>
+          <p class="text-align-justify" style="margin-left: 25px;">
+            The scatter plot on the right shows the increase in subscribers against views of each <span
+              style="color:white; background-color: #c4463b; border-radius: 10px">&nbsp;YouTube&nbsp;</span> channel in
+            a recent span of 30 days. The data was recorded 2 months ago, which was around August 2023. Unlike the
+            bubble plot on the left, this plot does not follow a linear trend.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stacked Bar Chart -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <h3 class="text-align-center"><span
+            style="color:white; background-color: #c4463b; border-radius: 10px">&nbsp;YouTube&nbsp;</span> Subscribers
+          Distribution of Countries in Each Continent</h1>
+      </div>
+
+      <div class="pure-u-2-3 stacked-bar-chart">
+        <div id="vis3"></div>
+
+        <div class="stacked-bar-chart-egypt">
+          Egypt
+        </div>
+        <div class="stacked-bar-chart-india">
+          India
+        </div>
+        <div class="stacked-bar-chart-uk">
+          United Kingdom
+        </div>
+        <div class="stacked-bar-chart-us">
+          United States of America
+        </div>
+        <div class="stacked-bar-chart-au">
+          Australia
+        </div>
+        <div class="stacked-bar-chart-brazil">
+          Brazil
+        </div>
+      </div>
+
+      <div class="pure-u-1-3">
+        <div class="description-right">
+          <p class="text-align-justify">
+            The distribution of <span
+              style="color:white; background-color: #c4463b; border-radius: 10px">&nbsp;YouTube&nbsp;</span> subscribers
+            in each continent is compared by the normalised stacked bar chart on the left.
+          </p>
+          <p class="text-align-justify">
+            We can see that for <span style="color: #4a2639;">Africa</span>, <span style="color: #4a2639;">Egypt</span>
+            has the largest distribution of subscribers with around <span style="font-size:large;">68%</span>.
+          </p>
+          <p class="text-align-justify">
+            In <span style="color: #b83f2f;">Asia</span>, <span style="color: #b83f2f;">India</span> has the largest
+            distribution of subscribers with around <span style="font-size:large;">58%</span>.
+          </p>
+          <p class="text-align-justify">
+            The <span style="color: #1e3559;">United Kingdom</span> has the largest distribution of subscribers in <span
+              style="color: #1e3559;">Europe</span> with around <span style="font-size:large;">38%</span>.
+          </p>
+          <p class="text-align-justify">
+            In <span style="color: #6eaeae;">North America</span>, the <span style="color: #6eaeae;">United States of
+              America</span> has the largest distribution of subscribers with around <span
+              style="font-size:large;">86%</span>.
+          </p>
+          <p class="text-align-justify">
+            <span style="color: #bfa2ed;">Australia</span> has the largest distribution of subscribers in <span
+              style="color: #bfa2ed;">Oceania</span> with around <span style="font-size:large;">90%</span>.
+          </p>
+          <p class="text-align-justify">
+            Finally, <span style="color: #c97f0b;">Brazil</span> has the largest distribution of subscribers in <span
+              style="color: #c97f0b;">South America</span> with around <span style="font-size:large;">66%</span>.
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Dot Plots -->
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <h3 class="text-align-center">Lowest & Highest Earnings of the Top 10 <span
+            style="color:white; background-color: #c4463b; border-radius: 10px">&nbsp;YouTube&nbsp;</span> Channels</h1>
+      </div>
+
+      <div class="pure-u-1-3">
+        <div id="vis4"></div>
+      </div>
+
+      <div class="pure-u-1-3">
+        <div style="margin-left: 110px; width: 60%">
+          <p class="text-align-justify">In regards to the top 10 channels in the world, both the monthly and yearly
+            earnings follow a similar trend.</p>
+          <p class="text-align-justify">T-Series is overall the biggest earner, followed by the kids channel Cocomelon,
+            and SET India. MrBeast, despite being ranked 2nd, falls short in both highest and lowest monthly and yearly
+            earnings.</p>
+        </div>
+      </div>
+
+      <div class="pure-u-1-3">
+        <div id="vis5"></div>
+      </div>
+    </div>
+
+    <!-- Radial Plot -->
+    <div class="pure-g">
+      <div class="pure-u-1-1" style="margin-left:180px">
+        <h3>Number of <span
+            style="color:white; background-color: #c4463b; border-radius: 10px">&nbsp;YouTube&nbsp;</span> Channels Per
+          Category
+          &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+          Top 10 <span style="color:white; background-color: #c4463b; border-radius: 10px">&nbsp;YouTube&nbsp;</span>
+          Channels</h3>
+      </div>
+
+      <div class="pure-u-1-3">
+        <div id="vis6"></div>
+      </div>
+
+      <div class="pure-u-1-3">
+        <div style="margin-right: 20px; width: 90%">
+          <p class="text-align-justify">Each <span
+              style="color:white; background-color: #c4463b; border-radius: 10px">&nbsp;YouTube&nbsp;</span> channel has
+            a category to specify what type of content they upload.</p>
+          <p class="text-align-justify">
+            For the top channels in the world, it is shown that Entertainment is the most popular category with <span
+              style="font-size:large;">213</span> channels.
+          </p>
+          <p class="text-align-justify">
+            For the top 100 channels, the Music category is the winner with a total of <span
+              style="font-size:large;">32</span> channels.
+          </p>
+          <p class="text-align-justify">
+            For the top 10 channels, the Others category which includes Film & Animation, Sports and Shows, has the most
+            channels.
+          </p>
+        </div>
+      </div>
+
+      <div class="pure-u-1-3">
+        <div>
+          <p class="text-align-justify">
+
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="pure-g">
+      <div class="pure-u-1-1">
+        <h4 class="text-align-center"
+          style="background-color: #c4463b; color: white; padding-top:20px; padding-bottom:20px">Created by Jerry Bryan
+          Susanto | Monash ID: 33468753</h4>
+      </div>
+    </div>
+
+  </div>
+
+
+  <script type="text/javascript">
+    var specVis1 = "idioms/choropleth-map.json";
+    var specVis2 = "idioms/bubble-plot-scatter-plot.json";
+    var specVis3 = "idioms/stacked-bar-chart.json";
+    var specVis4 = "idioms/dot-plot-1.json";
+    var specVis5 = "idioms/dot-plot-2.json";
+    var specVis6 = "idioms/radial-plot.json";
+
+    vegaEmbed('#vis1', specVis1, { "actions": false });
+
+    vegaEmbed('#vis2', specVis2, { "actions": false });
+
+    vegaEmbed('#vis3', specVis3, { "actions": false });
+
+    vegaEmbed('#vis4', specVis4, { "actions": false });
+
+    vegaEmbed('#vis5', specVis5, { "actions": false });
+
+    vegaEmbed('#vis6', specVis6, { "actions": false });
+
+  </script>
+</body>
+
+</html>

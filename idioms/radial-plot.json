@@ -1,0 +1,83 @@
+{
+  "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
+  "width": 200,
+  "height": 240,
+  "data": {
+    "url": "https://raw.githubusercontent.com/Jerry-Susanto/FIT3179-2023S2/main/category_occurences.csv"
+  },
+  "params": [
+    {
+      "name": "condition_selection",
+      "value": "all",
+      "bind": {
+        "input": "select",
+        "options": [
+          "all",
+          "top10",
+          "top100"
+        ],
+        "labels": [
+          "All Channels",
+          "Top 10 Channels Only",
+          "Top 100 Channels Only"
+        ],
+        "name": "Filter Channels: "
+      }
+    }
+  ],
+  "transform": [
+    {
+      "filter": "datum.Condition == condition_selection"
+    }
+  ],
+  "mark": {
+    "type": "arc",
+    "innerRadius": 20,
+    "stroke": "white",
+    "strokeWidth": 2
+  },
+  "encoding": {
+    "theta": {
+      "field": "Youtuber",
+      "type": "quantitative",
+      "stack": true
+    },
+    "radius": {
+      "field": "Youtuber",
+      "scale": {
+        "type": "sqrt",
+        "zero": true,
+        "rangeMin": 20
+      }
+    },
+    "color": {
+      "field": "Category",
+      "type": "nominal",
+      "scale": {
+        "range": [
+          "#b83f2f",
+          "#4a2639",
+          "#1e3559",
+          "#6eaeae",
+          "#bfa2ed",
+          "#d9d9d9",
+          "#c97f0b"
+        ]
+      }
+    },
+    "tooltip": [
+      {
+        "field": "Category",
+        "type": "nominal",
+        "title": "Category"
+      },
+      {
+        "field": "Youtuber",
+        "type": "quantitative",
+        "title": "Number of Channels",
+        "format": ",.0f"
+      }
+    ]
+  },
+  "config": {}
+}
